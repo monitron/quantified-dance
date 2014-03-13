@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  last_played_at: 2014-03-13 02:24:12
+  total_play_seconds: 9.99
+
+two:
+  name: MyString
+  last_played_at: 2014-03-13 02:24:12
+  total_play_seconds: 9.99
