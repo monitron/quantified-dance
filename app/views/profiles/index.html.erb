@@ -1,1 +1,16 @@
-hey there
+<h2>Profiles</h2>
+
+<div class="row">
+  <% @profiles.each do |profile| %>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <big><strong><%= link_to profile.name, profile %></strong></big>
+          <div>Last played <%= relative_date(profile.last_played_on) %></div>
+          <div>Total play time <%= distance_of_time_in_words profile.total_play_seconds %></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
