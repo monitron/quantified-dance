@@ -77,4 +77,7 @@ QuantifiedDance::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Where is your StepMania data?
+  STEPMANIA_DATA_PATH = "~/.stepmania-5.0/"
 end

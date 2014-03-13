@@ -26,4 +26,7 @@ QuantifiedDance::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # Where is your StepMania data?
+  STEPMANIA_DATA_PATH = "~/.stepmania-5.0/"
 end
