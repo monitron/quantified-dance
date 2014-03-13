@@ -38,7 +38,40 @@ class StepmaniaData
     end.flatten
   end
 
+  def songs
+    song_cache_data_paths.map do |filename|
+      data = parse_cache_data_file(filename)
+      path_components = Pathname(data["SONGFILENAME"].first).each_filename.to_a
+      charts = (0...(data["STEPSTYPE"].length rescue 0)).map do |n|
+        {
+          :type       => data["STEPSTYPE"][n],
+          :difficulty => data["DIFFICULTY"][n],
+          :meter      => data["METER"][n]
+        }
+      end
+      {
+        :song_dir => File.join(path_components + ['']),
+        :group    => path_components[1],
+        :title    => data["TITLE"].first,
+        :subtitle => data["SUBTITLE"].first,
+        :artist   => data["ARTIST"].first,
+        :charts   => charts
+      }
+    end
+  end
+
   private
+  def parse_cache_data_file(path)
+    pairs = File.read(path).scan(/^#([^:]*):([^;]*);/)
+    data = {}
+    pairs.each { |pair| (data[pair[0]] ||= []) << pair[1] }
+    data
+  end
+  
+  def song_cache_data_paths
+    Dir.glob(File.join(@path, 'Cache', 'Songs', 'Songs*'))
+  end
+  
   def stage_stats_xml_paths
     Dir.glob(File.join(@path, 'Save', 'Upload', '*.xml'))
   end
