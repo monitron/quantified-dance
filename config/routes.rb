@@ -1,4 +1,6 @@
 QuantifiedDance::Application.routes.draw do
+  resources :plays
+
   resources :profiles
 
   # The priority is based upon order of creation: first created -> highest priority.

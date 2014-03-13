@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313062412) do
+ActiveRecord::Schema.define(version: 20140313092855) do
+
+  create_table "plays", force: true do |t|
+    t.string   "guid"
+    t.integer  "profile_id"
+    t.integer  "song_id"
+    t.string   "difficulty"
+    t.string   "grade"
+    t.integer  "score"
+    t.float    "percent_dp"
+    t.integer  "max_combo"
+    t.float    "survive_seconds"
+    t.time     "played_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "profiles", force: true do |t|
     t.string   "name"
