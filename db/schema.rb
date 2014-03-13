@@ -15,8 +15,9 @@ ActiveRecord::Schema.define(version: 20140313062412) do
 
   create_table "profiles", force: true do |t|
     t.string   "name"
-    t.datetime "last_played_at"
-    t.decimal  "total_play_seconds"
+    t.string   "guid"
+    t.date     "last_played_on"
+    t.integer  "total_play_seconds"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
