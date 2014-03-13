@@ -5,5 +5,6 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
+    @plays = @profile.plays
   end
 end

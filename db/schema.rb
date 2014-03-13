@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140313092855) do
     t.float    "percent_dp"
     t.integer  "max_combo"
     t.float    "survive_seconds"
-    t.time     "played_at"
+    t.datetime "played_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

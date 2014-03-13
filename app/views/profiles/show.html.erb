@@ -1,1 +1,26 @@
 <h2><%= @profile.name %></h2>
+
+<h3>Scores</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Difficulty</th>
+      <th>Survived</th>
+      <th>Grade</th>
+      <th>Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @plays.each do |play| %>
+    <tr>
+      <td><%= play.played_at %></td>
+      <td><%= play.difficulty %></td>
+      <td><%= number_with_precision(play.survive_seconds, :precision => 0) %>s</td>
+      <td><%= grade_name(play.grade) %></td>
+      <td><%= number_to_percentage(play.percent_dp * 100, :precision => 2) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
