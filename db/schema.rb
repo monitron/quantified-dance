@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313092855) do
+ActiveRecord::Schema.define(version: 20140313185338) do
+
+  create_table "charts", force: true do |t|
+    t.integer  "song_id"
+    t.string   "steps_type"
+    t.string   "difficulty"
+    t.integer  "meter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "plays", force: true do |t|
     t.string   "guid"
     t.integer  "profile_id"
-    t.integer  "song_id"
-    t.string   "difficulty"
     t.string   "grade"
     t.integer  "score"
     t.float    "percent_dp"
@@ -26,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140313092855) do
     t.datetime "played_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "chart_id"
   end
 
   create_table "profiles", force: true do |t|
@@ -33,6 +41,16 @@ ActiveRecord::Schema.define(version: 20140313092855) do
     t.string   "guid"
     t.date     "last_played_on"
     t.integer  "total_play_seconds"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "songs", force: true do |t|
+    t.string   "dir"
+    t.string   "group"
+    t.string   "title"
+    t.string   "subtitle"
+    t.string   "artist"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

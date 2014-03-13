@@ -27,6 +27,7 @@ class StepmaniaData
           :song_dir        => play_xml.at_css('Song')['Dir'],
           :player_guid     => play_xml.at_css('PlayerGuid').text,
           :difficulty      => play_xml.at_css('Steps')['Difficulty'],
+          :steps_type      => play_xml.at_css('Steps')['StepsType'],
           :grade           => play_xml.at_css('Grade').text,
           :score           => play_xml.at_css('Score').text.to_i,
           :percent_dp      => play_xml.at_css('PercentDP').text.to_f,
@@ -41,16 +42,17 @@ class StepmaniaData
   def songs
     song_cache_data_paths.map do |filename|
       data = parse_cache_data_file(filename)
-      path_components = Pathname(data["SONGFILENAME"].first).each_filename.to_a
+      path_components = Pathname(data["SONGFILENAME"].first).
+        dirname.each_filename.to_a
       charts = (0...(data["STEPSTYPE"].length rescue 0)).map do |n|
         {
-          :type       => data["STEPSTYPE"][n],
+          :steps_type => data["STEPSTYPE"][n],
           :difficulty => data["DIFFICULTY"][n],
           :meter      => data["METER"][n]
         }
       end
       {
-        :song_dir => File.join(path_components + ['']),
+        :dir      => File.join(path_components + ['']),
         :group    => path_components[1],
         :title    => data["TITLE"].first,
         :subtitle => data["SUBTITLE"].first,

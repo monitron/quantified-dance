@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  song_id: 1
+  type: 
+  difficulty: MyString
+  meter: 1
+
+two:
+  song_id: 1
+  type: 
+  difficulty: MyString
+  meter: 1

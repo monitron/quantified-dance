@@ -1,4 +1,8 @@
 QuantifiedDance::Application.routes.draw do
+  resources :charts
+
+  resources :songs
+
   resources :plays
 
   resources :profiles
