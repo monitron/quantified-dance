@@ -1,0 +1,54 @@
+<h2>Songs Played by <%= @profile.name %></h2>
+
+<ul class="pager">
+  <li><%= link_to "&larr; Previous Day".html_safe, date: @date - 1.day %></li>
+  <li><strong><big>&nbsp;<%= l @date, format: :long %>&nbsp;</big></strong></li>
+  <li><%= link_to "Next Day &rarr;".html_safe, date: @date + 1.day %></li>
+  <li><%= link_to "Today", date: Date.today %></li>
+</ul>
+
+<div class="lead">
+  Played <%= pluralize @plays.length, 'stage' %> totaling
+  <%= distance_of_time_in_words(@plays.sum(:survive_seconds), 0, :include_seconds => true) %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Song</th>
+      <th>Difficulty</th>
+      <th>Survived</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @plays.each do |play| %>
+    <tr>
+      <td><big><%= l play.played_at, format: :time_only %></big></td>
+      <td>
+        <div>
+          <strong><big><%= play.chart.song.title %></big></strong>
+          <small><em><%= play.chart.song.subtitle %></em></small>
+        </div>
+        <div><%= play.chart.song.artist %></div>
+        <div><small><%= play.chart.song.group %></small></div>
+      </td>
+      <td>
+        <div><strong><big><%= play.chart.difficulty %></big></strong></div>
+        <div><strong><%= play.chart.meter %> foot</strong></div>
+        <div><%= play.chart.friendly_steps_type %></div>
+      </td>
+      <td>
+        <big>
+          <%= number_with_precision(play.survive_seconds, :precision => 0) %>s
+        </big>
+      </td>
+      <td>
+        <div><big><strong><%= grade_name(play.grade) %></strong></big></div>
+        <div><%= number_to_percentage(play.percent_dp * 100, :precision => 2) %></div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
