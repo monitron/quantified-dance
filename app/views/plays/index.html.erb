@@ -1,14 +1,15 @@
-<h2>Songs Played by <%= @profile.name %></h2>
 
-<ul class="pager">
-  <li><%= link_to "&larr; Previous Day".html_safe, date: @date - 1.day %></li>
+<ul class="pager pull-right">
+  <li><%= link_to "&larr;".html_safe, date: @date - 1.day %></li>
   <li><strong><big>&nbsp;<%= l @date, format: :long %>&nbsp;</big></strong></li>
-  <li><%= link_to "Next Day &rarr;".html_safe, date: @date + 1.day %></li>
+  <li><%= link_to "&rarr;".html_safe, date: @date + 1.day %></li>
   <li><%= link_to "Today", date: Date.today %></li>
 </ul>
 
+<h2>Songs played by <%= @profile.name %></h2>
+
 <div class="lead">
-  Played <%= pluralize @plays.length, 'stage' %> totaling
+  Danced <%= pluralize @plays.length, 'song' %> totaling
   <%= distance_of_time_in_words(@plays.sum(:survive_seconds), 0, :include_seconds => true) %>
 </div>
 
