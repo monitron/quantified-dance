@@ -1,6 +1,6 @@
 module ApplicationHelper
   def relative_date(date)
-    diff = (Date.today - date).to_i
+    diff = (date - Date.today).to_i
     if diff == 0
       "today"
     elsif diff == -1
@@ -26,5 +26,15 @@ module ApplicationHelper
       "Failed" => "E",
       "NoData" => "No Data"
     }[grade]
+  end
+
+  def duration_as_min_sec(seconds, long = false)
+    mins = (seconds / 60).floor
+    secs = (seconds % 60).round
+    if long
+      "#{mins} minutes, #{secs} seconds"
+    else
+      "#{mins}m #{secs}s"
+    end
   end
 end

@@ -10,7 +10,7 @@
 
 <div class="lead">
   Danced <%= pluralize @plays.length, 'song' %> totaling
-  <%= distance_of_time_in_words(@plays.sum(:survive_seconds), 0, :include_seconds => true) %>
+  <%= duration_as_min_sec(@plays.sum(:survive_seconds), true) %>
 </div>
 
 <table class="table table-striped">
