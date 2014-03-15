@@ -18,5 +18,5 @@ production:
   encoding: unicode
   database: quantified_dance
   pool: 5
-  username: postgres
+  username: www
   password: NoSeriouslyChangeThis
