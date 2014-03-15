@@ -19,4 +19,4 @@ production:
   database: quantified_dance
   pool: 5
   username: postgres
-  password:
+  password: NoSeriouslyChangeThis

@@ -79,7 +79,7 @@ QuantifiedDance::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Where is your StepMania data?
-  STEPMANIA_DATA_PATH = "~/.stepmania-5.0/"
+  STEPMANIA_DATA_PATH = "/home/justin/.stepmania-5.0/"
 
   # Pick a time zone for displaying values
   # rake time:zones:all may help you choose
