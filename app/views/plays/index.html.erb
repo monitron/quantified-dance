@@ -28,7 +28,9 @@
     <tr>
       <td><big><%= l play.played_at, format: :time_only %></big></td>
       <td>
-        <%= render partial: 'songs/song', object: play.chart.song %>
+        <%= link_to song_path(play.chart.song, chart_id: play.chart, profile_id: @profile) do %>
+          <%= render partial: 'songs/song', object: play.chart.song %>
+        <% end %>
       </td>
       <td>
         <%= render partial: 'charts/chart', object: play.chart %>

@@ -39,7 +39,11 @@
       <tbody>
         <% @favorite_songs.each do |fav| %>
           <tr>
-            <td><%= render partial: 'songs/song', object: fav.chart.song %></td>
+            <td>
+              <%= link_to song_path(fav.chart.song, chart_id: fav.chart, profile_id: @profile) do %>
+                <%= render partial: 'songs/song', object: fav.chart.song %>
+              <% end %>
+            </td>
             <td><%= render partial: 'charts/chart', object: fav.chart %></td>
             <td><big><strong><%= fav.num_plays %></strong></big></td>
           </tr>

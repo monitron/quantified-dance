@@ -1,0 +1,20 @@
+<h2>Songs</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Group</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @songs.each do |song| %>
+      <tr>
+        <td><%= link_to song.title, song %> <small><%= song.subtitle %></small></td>
+        <td><%= song.artist %></td>
+        <td><%= song.group %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

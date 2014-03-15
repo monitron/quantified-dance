@@ -1,6 +1,7 @@
 class Chart < ActiveRecord::Base
   belongs_to :song
   has_many :plays
+  has_many :profiles, -> { uniq }, through: :plays
 
   def friendly_steps_type
     {
@@ -9,5 +10,9 @@ class Chart < ActiveRecord::Base
       'dance-couple' => 'Couple',
       'dance-solo'   => 'Solo'
     }[steps_type]
+  end
+
+  def friendly_description
+    "#{friendly_steps_type} #{difficulty} (#{meter})"
   end
 end

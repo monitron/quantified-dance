@@ -1,0 +1,91 @@
+<div class="page-header">
+  <h2><%= @song.title %> <small><%= @song.subtitle %></small></h2>
+
+  <div><big><strong><%= @song.artist %></strong></big></div>
+  <div><big><%= @song.group %></big></div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <ul class="nav nav-pills nav-stacked">
+      <% @charts.each do |chart| %>
+        <li class="<%= 'active' if chart == @chart %>">
+          <%= link_to chart.friendly_description, chart_id: chart, profile_id: @profile %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <div class="dropdown pull-right">
+      <button class="btn btn-lg btn-link dropdown-toggle" type="button" id="plays-profile-dropdown" data-toggle="dropdown">
+        Newest first
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="plays-profile-dropdown">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+      </ul>
+    </div>
+
+    <div class="dropdown pull-left">
+      <button class="btn btn-lg btn-link dropdown-toggle" type="button" id="plays-profile-dropdown" data-toggle="dropdown">
+        <% if @profile.nil? %>
+          Everyone's plays
+        <% else %>
+          Plays by <%= @profile.name %>
+        <% end %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="plays-profile-dropdown">
+        <li role="presentation">
+          <%= link_to "Everyone's plays", chart_id: @chart, profile_id: nil %>
+        </li>
+        <% @chart.profiles.each do |profile| %>
+          <li role="presentation">
+            <%= link_to "Plays by #{profile.name}", chart_id: @chart, profile_id: profile %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th>Time</th>
+          <th>Survived</th>
+          <th>Grade</th>
+          <th>Percent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @plays.each do |play| %>
+          <tr>
+            <td>
+              <big>
+                <% if play.profile.present? %>
+                  <%= link_to play.profile.name, play.profile %>
+                <% else %>
+                  <em>no profile</em>
+                <% end %>
+              </big>
+            </td>
+            <td><big><%= l play.played_at %></big></td>
+            <td>
+              <big>
+                <%= number_with_precision(play.survive_seconds, :precision => 0) %>s
+              </big>
+            </td>
+            <td>
+              <big><strong><%= grade_name(play.grade) %></strong></big>
+            </td>
+            <td>
+              <big><%= number_to_percentage(play.percent_dp * 100, :precision => 2) %></big>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
