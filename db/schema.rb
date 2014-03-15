@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140313185338) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "charts", force: true do |t|
     t.integer  "song_id"
     t.string   "steps_type"
