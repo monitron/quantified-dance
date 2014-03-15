@@ -28,17 +28,10 @@
     <tr>
       <td><big><%= l play.played_at, format: :time_only %></big></td>
       <td>
-        <div>
-          <strong><big><%= play.chart.song.title %></big></strong>
-          <small><em><%= play.chart.song.subtitle %></em></small>
-        </div>
-        <div><%= play.chart.song.artist %></div>
-        <div><small><%= play.chart.song.group %></small></div>
+        <%= render partial: 'songs/song', object: play.chart.song %>
       </td>
       <td>
-        <div><strong><big><%= play.chart.difficulty %></big></strong></div>
-        <div><strong><%= play.chart.meter %> foot</strong></div>
-        <div><%= play.chart.friendly_steps_type %></div>
+        <%= render partial: 'charts/chart', object: play.chart %>
       </td>
       <td>
         <big>

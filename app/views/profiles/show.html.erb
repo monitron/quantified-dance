@@ -14,16 +14,37 @@
       <tbody>
         <% @recent_days.each do |day| %>
           <tr>
-            <td><%= link_to l(day.date.to_date, format: :long),
-                    profile_plays_path(@profile, date: day.date.to_date) %></td>
-            <td><%= day.num %></td>
-            <td><%= duration_as_min_sec day.secs %></td>
+            <td>
+              <big><strong><%= link_to l(day.date.to_date, format: :long),
+                    profile_plays_path(@profile, date: day.date.to_date) %>
+              </strong></big>
+            </td>
+            <td><big><%= day.num %></big></td>
+            <td><big><%= duration_as_min_sec day.secs %></big></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
   <div class="col-md-6">
-    <h3>Something</h3>
+    <h3>Favorite Songs</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Song</th>
+          <th>Difficulty</th>
+          <th>Plays</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @favorite_songs.each do |fav| %>
+          <tr>
+            <td><%= render partial: 'songs/song', object: fav.chart.song %></td>
+            <td><%= render partial: 'charts/chart', object: fav.chart %></td>
+            <td><big><strong><%= fav.num_plays %></strong></big></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
